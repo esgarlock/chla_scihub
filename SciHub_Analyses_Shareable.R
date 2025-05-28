@@ -214,8 +214,8 @@ city_doi=data%>%
 
 #just clean the above up a little bit to make it more presentation friendly. 
 city_doi_presentation_table=city_doi%>%
-  ungroup()%>%
+  ungroup()%>% #groups maintained from earlier analysis so had to ungroup
   dplyr::select(Title,`City according to GeoIP`,city_downloads,'total_downloads'=n)%>%
-  filter(total_downloads>470)
+  filter(total_downloads>470)# I did this because i wanted the top 5, but both top_n and slice_max were acting weird so this was faster 
  
   write.csv(city_doi_presentation_table,"chla_results/top_doi_city.csv")
